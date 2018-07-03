@@ -1,4 +1,4 @@
-body, td, th, p {
+r1body, td, th, p {
   font-family: Arial, Helvectica, sans-serif;
   font-size: 10pt;
   color: #333;
@@ -201,7 +201,7 @@ nav {
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  padding: 20px 40px 20px;
+  padding: 20px 30px 20px;
   max-width: 100%; }
 
 #reviews-list {
@@ -210,16 +210,41 @@ nav {
   #reviews-list li {
     background-color: #fff;
     border: 2px solid #f3f3f3;
-    display: block;
     list-style-type: none;
-    margin: 0 0 30px;
+    margin: 0 0 20px;
     overflow: hidden;
-    padding: 0 20px 20px;
-    max-width: 100%; }
-    #reviews-list li:last-child {
-      margin: 0; }
+    max-width: 100%;
+    border-radius: 30px 30px 30px 0; }
+    #reviews-list li .review-header {
+      grid-area: Header;
+      display: grid;
+      grid-template-columns: 1fr 1fr 3fr;
+      grid-template-rows: auto;
+      grid-template-areas: "Name . Date Date";
+      background-color: black;
+      padding: 10px 20px 5px; }
+      #reviews-list li .review-header .review-name {
+        grid-area: Name;
+        font-weight: bold;
+        color: #adadad; }
+      #reviews-list li .review-header .review-date {
+        grid-area: Date;
+        color: white; }
+    #reviews-list li .review-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-template-areas: "Header Header Header" "Rating . ." "Comments Comments Comments";
+      padding: 0 20px 20px; }
+      #reviews-list li .review-content .review-rating {
+        grid-area: Rating;
+        background-color: orange;
+        border-radius: 5px; }
+      #reviews-list li .review-content .review-comments {
+        grid-area: Comments; }
     #reviews-list li p {
-      margin: 0,0,10px; }
+      margin: 3px 0;
+      text-align: center; }
 
 #restaurant-hours td {
   color: #666; }
