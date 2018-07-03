@@ -57,6 +57,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   padding: 25px;
   text-align: center;
   text-transform: uppercase;
+  max-width: 100%;
 }
 
 /* ====================== Navigation ====================== */
@@ -208,7 +209,6 @@ p {
 .inside{
 	header{
   		max-width: 100%;
-  		z-index: 1000;
 	}
 
 	#map-container {
@@ -233,6 +233,7 @@ p {
   	margin: 15px 0 30px;
   	text-transform: uppercase;
   	line-height: 1.1;
+  	text-align: center;
 }
 
 #restaurant-img {
@@ -260,7 +261,7 @@ p {
 #restaurant-container, #reviews-container {
   	border-bottom: 1px solid #d9d9d9;
   	border-top: 1px solid #fff;
-  	padding: 20px 30px 20px;
+  	padding: 20px 15px 20px;
   	max-width: 100%;
 }
 
@@ -272,7 +273,6 @@ p {
   		background-color: #fff;
     	border: 2px solid #f3f3f3;
   		list-style-type: none;
-  		margin: 0 0 20px;
   		overflow: hidden;
   		max-width: 100%;
   		border-radius: 30px 30px 30px 0;
@@ -287,7 +287,7 @@ p {
 
 			background-color: black;
 
-			padding: 10px 20px 5px;
+			padding: 10px 15px 5px;
 
 			.review-name{
 				grid-area: Name;

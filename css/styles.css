@@ -44,7 +44,8 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
   letter-spacing: 1px;
   padding: 25px;
   text-align: center;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  max-width: 100%; }
 
 /* ====================== Navigation ====================== */
 nav {
@@ -156,8 +157,7 @@ nav {
 
 /* ====================== Restaurant Details ====================== */
 .inside header {
-  max-width: 100%;
-  z-index: 1000; }
+  max-width: 100%; }
 
 .inside #map-container {
   background: blue none repeat scroll 0 0;
@@ -177,7 +177,8 @@ nav {
   letter-spacing: 0;
   margin: 15px 0 30px;
   text-transform: uppercase;
-  line-height: 1.1; }
+  line-height: 1.1;
+  text-align: center; }
 
 #restaurant-img {
   max-width: 100%; }
@@ -201,7 +202,7 @@ nav {
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  padding: 20px 30px 20px;
+  padding: 20px 15px 20px;
   max-width: 100%; }
 
 #reviews-list {
@@ -211,7 +212,6 @@ nav {
     background-color: #fff;
     border: 2px solid #f3f3f3;
     list-style-type: none;
-    margin: 0 0 20px;
     overflow: hidden;
     max-width: 100%;
     border-radius: 30px 30px 30px 0; }
@@ -222,7 +222,7 @@ nav {
       grid-template-rows: auto;
       grid-template-areas: "Name . Date Date";
       background-color: black;
-      padding: 10px 20px 5px; }
+      padding: 10px 15px 5px; }
       #reviews-list li .review-header .review-name {
         grid-area: Name;
         font-weight: bold;
