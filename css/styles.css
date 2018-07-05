@@ -1,5 +1,6 @@
+/* ====================== Colors ====================== */
 r1body, td, th, p {
-  font-family: Arial, Helvectica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 10pt;
   color: #333;
   line-height: 1.5; }
@@ -13,7 +14,7 @@ body {
   width: 100%; }
 
 ul, li {
-  font-family: Arial, Helvectica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 10pt;
   color: #333; }
 
@@ -27,7 +28,7 @@ a {
     border: none 0px #fff; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0 0 20px; }
 
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
@@ -104,7 +105,7 @@ nav {
   .filter-options select {
     background-color: white;
     border: 1px solid #fff;
-    font-family: Arial,sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 11pt;
     height: 35px;
     letter-spacing: 0;
@@ -129,7 +130,8 @@ nav {
     margin: 15px;
     padding: 25px 30px 25px;
     text-align: left;
-    max-width: 100%; }
+    max-width: 100%;
+    text-align: center; }
     #restaurants-list li h1 {
       color: #f18200;
       font-family: Arial,sans-serif;
@@ -171,7 +173,7 @@ nav {
 
 #restaurant-name {
   color: #f18200;
-  font-family: Arial,sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 20pt;
   font-weight: 200;
   letter-spacing: 0;
@@ -226,7 +228,7 @@ nav {
       #reviews-list li .review-header .review-name {
         grid-area: Name;
         font-weight: bold;
-        color: #adadad; }
+        color: #d9d9d9; }
       #reviews-list li .review-header .review-date {
         grid-area: Date;
         color: white; }
