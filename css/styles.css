@@ -37,7 +37,9 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 
 #maincontent {
   background-color: #f3f3f3;
-  min-height: 100%; }
+  min-height: 100%;
+  max-width: 1600px;
+  margin: auto; }
 
 #footer {
   background-color: #444;
