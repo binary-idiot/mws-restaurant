@@ -1,7 +1,9 @@
 const gulp = require('gulp');
 const connect = require('gulp-connect');
 const sass = require('gulp-sass');
+const images = require('gulp-responsive-images');
 const del = require('del');
+
 
 gulp.task('styles', gulp.series(cleanStyles, compileStyles));
 
@@ -12,6 +14,7 @@ gulp.task('clean', gulp.parallel(cleanImages, cleanStyles));
 gulp.task('watch', gulp.parallel(watchStyles, watchImages));
 
 gulp.task('default', gulp.parallel(serve, gulp.series(gulp.parallel('styles', 'images'), 'watch')));
+
 
 function cleanStyles() {return del(['css/*']);}
 
@@ -43,5 +46,22 @@ function compileStyles() {
 
 function resizeImages() {
 	return gulp.src('src/img/*')
+		.pipe(images({
+			'*.jpg':[{
+				width: 300,
+				suffix: '-small',
+				quality: 30
+			},
+			{
+				width: 600,
+				suffix: '-medium',
+				quality: 30
+			},
+			{
+				width: 800,
+				suffix: '-large',
+				quality: 30
+			}]
+		}))
 		.pipe(gulp.dest('img'));
 }
