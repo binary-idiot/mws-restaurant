@@ -21,8 +21,12 @@ ul, li {
 	color: $grey-1;
 }
 
+*:focus{
+  outline: 2px solid #ff4d4d;
+}
+
 a {
-	//color: $orange-1;
+	color: $orange-1;
 	text-decoration: none;
 
 	&:hover, &:focus {

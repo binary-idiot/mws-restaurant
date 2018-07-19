@@ -19,7 +19,11 @@ ul, li {
   font-size: 10pt;
   color: #333; }
 
+*:focus {
+  outline: 2px solid #ff4d4d; }
+
 a {
+  color: orange;
   text-decoration: none; }
   a:hover, a:focus {
     color: #3397db;

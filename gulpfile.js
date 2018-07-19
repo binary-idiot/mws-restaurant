@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const connect = require('gulp-connect');
 const sass = require('gulp-sass');
 const images = require('gulp-responsive-images');
+const wait = require('gulp-wait');
 const del = require('del');
 
 
@@ -40,6 +41,7 @@ function serve() {
 
 function compileStyles() {
 	return gulp.src('src/sass/*')
+		.pipe(wait(50))								//Wait for file to finish saving
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest('css'));
 }
