@@ -1,12 +1,12 @@
 const staticCache = 'restaurant-reviews-static-';
-const staticVer = 'v1';
+const staticVer = 'v2';
 
 self.addEventListener('install', event =>{
 
 	event.waitUntil(
 		caches.open(`${staticCache}${staticVer}`).then(cache => {
 			return cache.addAll(['/', '/restaurant.html',
-				'js/main.js', 'js/dbhelper.js', 'js/restaurant_info.js',
+				'js/main.js', 'js/dbhelper.js', 'js/swhelper.js', 'js/restaurant_info.js',
 				'css/styles.css',
 				'data/restaurants.json']);
 		})
