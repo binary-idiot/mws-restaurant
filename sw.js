@@ -1,5 +1,5 @@
 const staticCache = 'restaurant-reviews-static-';
-const staticVer = 'v2';
+const staticVer = 'v4';
 
 self.addEventListener('install', event =>{
 
@@ -37,9 +37,26 @@ self.addEventListener('message', event => {
 
 self.addEventListener('fetch', event => {
 	event.respondWith(
-		caches.match(event.request).then(response => {
-			if(response) return response;
-			return fetch(event.request);
+		caches.open(`${staticCache}${staticVer}`).then(cache =>{
+			return cache.match(event.request).then(response => {
+
+				if(!response){
+					console.log(`${event.request.url} not in cache, fetching...`)
+					fetch(event.request).then(response =>{
+						console.log(response);
+						if(!response.ok)
+							throw new TypeError('Bad response status');
+
+						cache.put(event.request, response);
+					});
+				}
+
+				//console.log(event.request);
+				//console.log(response);
+
+				return response;
+
+			})
 		})
 	);
 });
