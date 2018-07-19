@@ -20,7 +20,6 @@ ul, li {
   color: #333; }
 
 a {
-  color: orange;
   text-decoration: none; }
   a:hover, a:focus {
     color: #3397db;

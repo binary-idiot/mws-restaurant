@@ -14,7 +14,6 @@ self.addEventListener('install', event =>{
 });
 
 self.addEventListener('activate', event =>{
-	console.log('Activating sw 7');
 	event.waitUntil(
 		caches.keys().then(cacheNames =>{
 			return Promise.all(
