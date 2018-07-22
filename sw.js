@@ -1,5 +1,5 @@
 const staticCache = 'restaurant-reviews-static-';
-const staticVer = 'v4';
+const staticVer = 'v5';
 
 self.addEventListener('install', event =>{
 
@@ -8,7 +8,9 @@ self.addEventListener('install', event =>{
 			return cache.addAll(['/', '/restaurant.html',
 				'js/main.js', 'js/dbhelper.js', 'js/swhelper.js', 'js/restaurant_info.js',
 				'css/styles.css',
-				'data/restaurants.json']);
+				'data/restaurants.json',
+				'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
+				'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js']);
 		})
 	);
 });
@@ -41,22 +43,21 @@ self.addEventListener('fetch', event => {
 			return cache.match(event.request).then(response => {
 
 				if(!response){
-					console.log(`${event.request.url} not in cache, fetching...`)
-					fetch(event.request).then(response =>{
-						console.log(response);
-						if(!response.ok)
-							throw new TypeError('Bad response status');
-
-						cache.put(event.request, response);
+					console.log(`${event.request.url} not in cache, fetching...`);
+					const fetchRequest = event.request.clone();
+					return fetch(fetchRequest).then(fetchResponse =>{
+						
+						const fr = fetchResponse.clone();
+						cache.put(event.request, fr);
+						return fetchResponse;
 					});
+				}else{
+					console.log(`${event.request.url} in cache, serving...`);
+					return response;
 				}
-
-				//console.log(event.request);
-				//console.log(response);
-
-				return response;
 
 			})
 		})
+		
 	);
 });
