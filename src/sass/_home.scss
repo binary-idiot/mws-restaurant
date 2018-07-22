@@ -3,7 +3,7 @@
 .filter-options {
   max-width: 100%;
   min-height: 50px;
-  background-color: #3397DB;
+  background-color: $blue-3;
   padding: 10px;
 
   h2 {
@@ -89,7 +89,7 @@ p {
   		a {
   			background-color: orange;
 		  	border-bottom: 3px solid $white-4;
-		  	color: #fff;
+		  	color: $white-2;
 		  	display: inline-block;
 		  	font-size: 10pt;
 		  	margin: 15px 0 0;
