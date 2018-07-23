@@ -219,7 +219,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
     @media (min-width: 574px) {
       #restaurants-list li {
         margin: 15px 10px 15px; } }
-    #restaurants-list li h1 {
+    #restaurants-list li h2 {
       color: #f18200;
       font-family: Arial,sans-serif;
       font-size: 14pt;
