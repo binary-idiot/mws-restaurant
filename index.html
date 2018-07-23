@@ -19,7 +19,7 @@
 <body>
 
   <header>
-    <nav>
+    <nav id="page-title">
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
@@ -27,20 +27,20 @@
   <main id="maincontent">
 
     <!-- Beginning map -->
-    <section id="map-container">
+    <section id="map-container" role="application" aria-label="Restaurant Map">
       <div id="map"></div>
     </section>
     <!-- End map -->
 
-    <section>
+    <section role="form" aria-labelledby="filter-header">
       
       <!-- Start filter options -->
       <div class="filter-options">
-        <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <h2 id="filter-header">Filter Restaurant Results</h2>
+        <select id="neighborhoods-select" name="neighborhoods" role="listbox" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+        <select id="cuisines-select" name="cuisines" role="listbox" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
       </div>
