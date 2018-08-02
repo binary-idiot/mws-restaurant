@@ -13,7 +13,7 @@ class DBHelper {
   }
 
   static queryDB(id = ''){
-    return fetch(DBHelper.DATABASE_URL).then(response => {
+    return fetch(`${DBHelper.DATABASE_URL}${id}`).then(response => {
       if(!response.ok)
         throw new Error(`Request failed. Returned status of ${response.status}`);
       return response.json();
@@ -26,6 +26,7 @@ class DBHelper {
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
+    console.log("Fetching restaurants");
     DBHelper.queryDB().then(response => {
       callback(null, response);
     }).catch(error => {
@@ -37,6 +38,7 @@ class DBHelper {
    * Fetch a restaurant by its ID.
    */
   static fetchRestaurantById(id, callback) {
+    console.log(`Fetching restaurant ${id}`)
     DBHelper.queryDB(id).then(response => {
       callback(null, response);
     }).catch(error => {
