@@ -8,45 +8,39 @@ class DBHelper {
    * Change this to restaurants.json file location on your server.
    */
   static get DATABASE_URL() {
-    const port = 8080 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    const port = 1337 // Change this to your server port
+    return `http://localhost:${port}/restaurants/`;
   }
+
+  static queryDB(id = ''){
+    return fetch(DBHelper.DATABASE_URL).then(response => {
+      if(!response.ok)
+        throw new Error(`Request failed. Returned status of ${response.status}`);
+      return response.json();
+    });
+  }
+
+  // fetchRestaurants and fetchRestaurantByID act as interfaces for queryDB to ensure compatability with stage 1 functions
 
   /**
    * Fetch all restaurants.
    */
   static fetchRestaurants(callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', DBHelper.DATABASE_URL);
-    xhr.onload = () => {
-      if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
-        callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
-        const error = (`Request failed. Returned status of ${xhr.status}`);
-        callback(error, null);
-      }
-    };
-    xhr.send();
+    DBHelper.queryDB().then(response => {
+      callback(null, response);
+    }).catch(error => {
+      callback(error, null);
+    });
   }
 
   /**
    * Fetch a restaurant by its ID.
    */
   static fetchRestaurantById(id, callback) {
-    // fetch all restaurants with proper error handling.
-    DBHelper.fetchRestaurants((error, restaurants) => {
-      if (error) {
-        callback(error, null);
-      } else {
-        const restaurant = restaurants.find(r => r.id == id);
-        if (restaurant) { // Got the restaurant
-          callback(null, restaurant);
-        } else { // Restaurant does not exist in the database
-          callback('Restaurant does not exist', null);
-        }
-      }
+    DBHelper.queryDB(id).then(response => {
+      callback(null, response);
+    }).catch(error => {
+      callback(error, null);
     });
   }
 
