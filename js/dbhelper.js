@@ -1,6 +1,11 @@
 /**
  * Common database helper functions.
  */
+
+const restaurantDb = idb.open('restaurants-db', 1, db => {
+  const restaurantStore = db.createObjectStore('restaurant', {keyPath: 'id'});
+});
+
 class DBHelper {
 
   /**
@@ -17,6 +22,31 @@ class DBHelper {
       if(!response.ok)
         throw new Error(`Request failed. Returned status of ${response.status}`);
       return response.json();
+    }).catch(error => {
+      console.error(error);
+    });
+  }
+
+  static storeRestaurant(restaurant) {
+    return restaurantDb.then( db => {
+      const tx = db.transaction('restaurant', 'readwrite');
+      const restaurantStore = tx.objectStore('restaurant');
+      restaurantStore.put(restaurant);
+      return tx.complete;
+    });
+  }
+
+  static getRestaurant(id = null) {
+    return restaurantDb.then(db => {
+      const tx = db.transaction('restaurant');
+      const restaurantStore = tx.objectStore('restaurant');
+      let response;
+      if(id != null){
+        response = restaurantStore.get(Number(id));
+      }else{
+        response = restaurantStore.getAll();
+      }
+      return response;
     });
   }
 
@@ -27,8 +57,20 @@ class DBHelper {
    */
   static fetchRestaurants(callback) {
     console.log("Fetching restaurants");
+    DBHelper.getRestaurant().then(restaurants => {
+
     DBHelper.queryDB().then(response => {
-      callback(null, response);
+        if(response){
+          response.forEach(restaurant => {
+            if(!DBHelper.storeRestaurant(restaurant))
+              throw new Error(`Error saving restaurant ${restaurant.id} to db`);
+          })
+          return response;
+        }
+      }).then(fetchedRestaurants => {
+        callback(null, (restaurants.length != 0) ? restaurants : fetchedRestaurants);
+      });
+
     }).catch(error => {
       callback(error, null);
     });
@@ -39,8 +81,20 @@ class DBHelper {
    */
   static fetchRestaurantById(id, callback) {
     console.log(`Fetching restaurant ${id}`)
-    DBHelper.queryDB(id).then(response => {
-      callback(null, response);
+
+    DBHelper.getRestaurant(id).then(restaurant => {
+
+      const fetchedRestaurant = DBHelper.queryDB(id).then(response => {
+        if(response){
+          if(!DBHelper.storeRestaurant(response))
+            throw new Error(`Error saving restaurant ${response.id} to db`);
+          return response;
+        }
+      }).then(fetchedRestaurant => {
+        
+        callback(null, (restaurant) ? restaurant : fetchedRestaurant);
+      });
+
     }).catch(error => {
       callback(error, null);
     });

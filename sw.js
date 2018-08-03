@@ -1,5 +1,5 @@
 const staticCache = 'restaurant-reviews-static-';
-const staticVer = 'v5';
+const staticVer = 'v6';
 
 self.addEventListener('install', event =>{
 	event.waitUntil(
@@ -9,7 +9,7 @@ self.addEventListener('install', event =>{
 			return cache.addAll(['/', '/restaurant.html',
 				'js/main.js', 'js/dbhelper.js', 'js/swhelper.js', 'js/restaurant_info.js',
 				'css/styles.css',
-				'data/restaurants.json',
+				'https://rawgit.com/jakearchibald/idb/master/lib/idb.js',
 				'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
 				'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js']);
 		})
@@ -45,6 +45,7 @@ self.addEventListener('message', event => {
 });
 
 self.addEventListener('fetch', event => {
+	if(!event.request.url.startsWith('http://localhost:1337/restaurants/'))
 	event.respondWith(
 
 		// Look for request in cache
