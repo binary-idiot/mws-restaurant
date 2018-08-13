@@ -81,6 +81,14 @@ function resizeImages() {
 				width: 800,
 				suffix: '-large',
 				quality: 30
+			}],
+			'app_logo.png':[{
+				width: 192,
+				suffix: '-small'
+			},
+			{
+				width: 512,
+				suffix: '-large'
 			}]
 		}))
 		.pipe(gulp.dest('img'));

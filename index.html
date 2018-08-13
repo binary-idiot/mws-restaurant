@@ -2,6 +2,7 @@
 <html lang="en-US">
 
 <head>
+  <link rel="manifest" href="/manifest.json">
   <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <!-- Main CSS file -->
@@ -13,6 +14,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
+  <meta name="theme-color" content="#252831">
 
 </head>
 
@@ -37,10 +39,10 @@
       <!-- Start filter options -->
       <div class="filter-options">
         <h2 id="filter-header">Filter Restaurant Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" role="listbox" onchange="updateRestaurants()">
+        <select id="neighborhoods-select" name="neighborhoods" role="listbox" aria-label="select neighborhood" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" role="listbox" onchange="updateRestaurants()">
+        <select id="cuisines-select" name="cuisines" role="listbox" aria-label="select cuisine" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
       </div>
